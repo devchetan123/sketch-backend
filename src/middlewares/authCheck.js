@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 
 const getUserByToken = async (token) => {
     return new Promise((resolve, reject) => {
-        jwt.verify(token, process.env.JWT_SECRECT_KEY, (err, user) => {
+        jwt.verify(token, "sketch@123", (err, user) => {
             if(err) return reject(err);
             resolve(user)
         })

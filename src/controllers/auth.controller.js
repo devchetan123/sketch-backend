@@ -3,42 +3,42 @@ const router = express.Router();
 const jwt = require("jsonwebtoken")
 const User = require("../models/user.model");
 
-const passport = require("../configs/passport")
+// const passport = require("../configs/passport")
 
 const newToken = (user) => {
     return jwt.sign({ user }, process.env.JWT_SECRECT_KEY)
 }
 
 
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
+// passport.serializeUser(function (user, done) {
+//     done(null, user);
+// });
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+// passport.deserializeUser(function (user, done) {
+//     done(null, user);
+// });
 
 
-router.get(
-    "/google",
-    passport.authenticate("google", { scope: ["email", "profile"] })
-);
+// router.get(
+//     "/google",
+//     passport.authenticate("google", { scope: ["email", "profile"] })
+// );
 
-router.get(
-    "/google/callback",
-    passport.authenticate(
-        "google",
-        {
-            successRedirect: "/",
-            failureRedirect: "/auth/google/failure",
-        },
+// router.get(
+//     "/google/callback",
+//     passport.authenticate(
+//         "google",
+//         {
+//             successRedirect: "/",
+//             failureRedirect: "/auth/google/failure",
+//         },
 
-    ),
-    (req, res) => {
-        let token = newToken(req)
-        res.status(200).json({ token })
-    }
-);
+//     ),
+//     (req, res) => {
+//         let token = newToken(req)
+//         res.status(200).json({ token })
+//     }
+// );
 
 router.post("/register", async (req, res) => {
 
